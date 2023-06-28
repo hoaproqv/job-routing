@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { createContext, useEffect, useState } from "react";
+import getAPI from "./components/getAPI";
+import Body from "./components/Body";
+import { Route, Routes } from "react-router-dom";
+import Item from "./components/page/Item";
+
+
+export const CardContext = createContext();
 
 function App() {
+  const [data, setData] = useState(null);
+  const [page, setPage] = useState(1);
+  const [path, setPath] = useState("/item");
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getAPI(page);
+      setData(data);
+    };
+    fetchData();
+  }, [page]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <CardContext.Provider value={setPath}>
+      <Routes>
+        <Route path="/" element={<Body data={data} setPage={setPage} />}>
+          <Route
+            path='/:id'
+            element={<Item data={data}/>}
+          />
+        </Route>
+      </Routes>
+    </CardContext.Provider>
   );
 }
 
