@@ -11,7 +11,7 @@ function NavigationPage() {
       justifyContent={"center"}
       margin={"20px 0px"}
     >
-      {data == 0 ? (
+      {!data.length ? (
         ""
       ) : (
         <Box width={190}>

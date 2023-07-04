@@ -9,7 +9,7 @@ import "./css/App.css";
 export const ContextValues = createContext();
 
 function App() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   const [isLogin, setIsLogin] = useState(false);
   const [dataUser, setDataUser] = useState(null);

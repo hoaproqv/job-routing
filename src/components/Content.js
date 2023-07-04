@@ -15,7 +15,7 @@ function Content() {
         rowGap={5}
         marginLeft="0"
       >
-        {data == 0 ? (
+        {!data.length ? (
           <Typography textAlign="center" display="block" width="100%">
             No search match
           </Typography>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -10,7 +10,6 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import { Container, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { ContextValues } from "../App";
-import getAPI from "../function/getAPI";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
