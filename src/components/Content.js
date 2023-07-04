@@ -5,7 +5,6 @@ import { ContextValues } from "../App";
 
 function Content() {
   const { data } = useContext(ContextValues);
-  console.log(data);
   return (
     <Box maxWidth={"1000px"} margin="0 auto" sx={{ flexGrow: 1 }}>
       <Grid

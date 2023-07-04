@@ -4,8 +4,16 @@ import { ContextValues } from "../App";
 import { useNavigate } from "react-router-dom";
 
 function JobItem({ item }) {
-  const { isLogin } = useContext(ContextValues);
+  const { isLogin, setPath } = useContext(ContextValues);
   const navigate = useNavigate();
+  const handleReadMoreBtnClick = () => {
+    if (isLogin) {
+      navigate(`/jobs/${item.id}`);
+    } else {
+      navigate("/login");
+      setPath(`/jobs/${item.id}`);
+    }
+  };
   return (
     <Box
       width={320}
@@ -65,15 +73,7 @@ function JobItem({ item }) {
           variant="contained"
           color="success"
           size="small"
-          onClick={
-            isLogin
-              ? () => {
-                  navigate(`/jobs/${item.id}`);
-                }
-              : () => {
-                  navigate("/login");
-                }
-          }
+          onClick={handleReadMoreBtnClick}
         >
           read more
         </Button>

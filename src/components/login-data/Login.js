@@ -19,7 +19,7 @@ import * as yup from "yup";
 import { ContextValues } from "../../App";
 
 function Login() {
-  const { setIsLogin, setDataUser } = useContext(ContextValues);
+  const { setIsLogin, setDataUser, path } = useContext(ContextValues);
   const defaultValues = {
     username: "hanhoa97",
     password: "12345",
@@ -45,7 +45,7 @@ function Login() {
   const onSubmit = (data) => {
     setIsLogin(true);
     setDataUser(data);
-    navigate("/");
+    navigate(path);
   };
 
   return (
@@ -108,7 +108,7 @@ function Login() {
             <Button
               type="button"
               className="cancelbtn"
-              onClick={() => navigate("/")}
+              onClick={() => navigate()}
               style={cancelButton}
             >
               Cancel

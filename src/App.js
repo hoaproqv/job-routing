@@ -14,6 +14,7 @@ function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [dataUser, setDataUser] = useState(null);
   const [search, setSearch] = useState("");
+  const [path, setPath] = useState("/");
   useEffect(() => {
     const fetchData = async () => {
       const data = await getAPI({ page: page, search: search });
@@ -33,6 +34,8 @@ function App() {
         setDataUser,
         search,
         setSearch,
+        path,
+        setPath,
       }}
     >
       <Routes>
