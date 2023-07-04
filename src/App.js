@@ -1,35 +1,47 @@
-import { createContext, useEffect, useState } from "react";
-import getAPI from "./components/getAPI";
+import { useEffect, useState, createContext } from "react";
+import getAPI from "./function/getAPI";
 import Body from "./components/Body";
 import { Route, Routes } from "react-router-dom";
 import Item from "./components/page/Item";
+import Login from "./components/login-data/Login";
+import "./css/App.css";
 
-
-export const CardContext = createContext();
+export const ContextValues = createContext();
 
 function App() {
   const [data, setData] = useState(null);
   const [page, setPage] = useState(1);
-  const [path, setPath] = useState("/item");
+  const [isLogin, setIsLogin] = useState(false);
+  const [dataUser, setDataUser] = useState(null);
+  const [search, setSearch] = useState("");
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getAPI(page);
+      const data = await getAPI({ page: page, search: search });
       setData(data);
     };
     fetchData();
-  }, [page]);
+  }, [page, search]);
 
   return (
-    <CardContext.Provider value={setPath}>
+    <ContextValues.Provider
+      value={{
+        data,
+        setPage,
+        isLogin,
+        setIsLogin,
+        dataUser,
+        setDataUser,
+        search,
+        setSearch,
+      }}
+    >
       <Routes>
-        <Route path="/" element={<Body data={data} setPage={setPage} />}>
-          <Route
-            path='/:id'
-            element={<Item data={data}/>}
-          />
+        <Route path="/" element={<Body />}>
+          <Route path="/jobs/:id" element={<Item />} />
+          <Route path="/login" element={<Login />} />
         </Route>
       </Routes>
-    </CardContext.Provider>
+    </ContextValues.Provider>
   );
 }
 

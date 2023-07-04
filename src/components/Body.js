@@ -4,16 +4,16 @@ import NavigationPage from "./NavigationPage";
 import Content from "./Content";
 import { Outlet } from "react-router-dom";
 
-function Body({ data, setPage }) {
+function Body() {
   return (
     <>
       <Header />
 
-      <Content data={data} />
+      <Content />
 
-      <NavigationPage setPage={setPage} />
+      <NavigationPage />
 
-      <Outlet/>
+      <Outlet />
     </>
   );
 }

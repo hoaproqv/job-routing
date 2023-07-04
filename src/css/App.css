@@ -1,0 +1,14 @@
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+  .cancelbtn {
+    width: 100%;
+  }
+}

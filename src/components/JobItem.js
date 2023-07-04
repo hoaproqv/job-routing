@@ -1,9 +1,11 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Divider, Typography } from "@mui/material";
 import React, { useContext } from "react";
-import { CardContext } from "../App";
+import { ContextValues } from "../App";
+import { useNavigate } from "react-router-dom";
 
 function JobItem({ item }) {
-  const setPath = useContext(CardContext);
+  const { isLogin } = useContext(ContextValues);
+  const navigate = useNavigate();
   return (
     <Box
       width={320}
@@ -21,11 +23,11 @@ function JobItem({ item }) {
         fontSize={16}
         textAlign={"center"}
         marginTop={1}
-        borderBottom={"0.5px solid"}
         paddingBottom={0.5}
       >
         {item.title}
       </Typography>
+      <Divider variant="middle" sx={{ backgroundColor: "white" }} />
       <Box
         display={"flex"}
         justifyContent={"flex-start"}
@@ -57,15 +59,21 @@ function JobItem({ item }) {
       <Typography variantMapping={{ body1: "p" }} fontSize={13}>
         {item.description}
       </Typography>
-      <Box width={"87%"} textAlign={"center"} position={"absolute"} bottom={15}>
+      <Box width={"85%"} textAlign={"center"} position={"absolute"} bottom={15}>
         <Button
+          maxwidth={120}
           variant="contained"
           color="success"
           size="small"
-          href={item.id}
-          onClick={() => {
-            setPath(item.id);
-          }}
+          onClick={
+            isLogin
+              ? () => {
+                  navigate(`/jobs/${item.id}`);
+                }
+              : () => {
+                  navigate("/login");
+                }
+          }
         >
           read more
         </Button>

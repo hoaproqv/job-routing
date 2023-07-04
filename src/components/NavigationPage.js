@@ -1,12 +1,30 @@
 import { Box, Pagination } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
+import { ContextValues } from "../App";
 
-function NavigationPage({setPage}) {
+function NavigationPage() {
+  const { setPage, data } = useContext(ContextValues);
   return (
-    <Box width="100%" display={"flex"} justifyContent={"center"} marginTop={5}>
-      <Box width={190}>
-        <Pagination onChange={(event, page)=>{setPage(page)}} count={3} color="primary" />
-      </Box>
+    <Box
+      width="100%"
+      display={"flex"}
+      justifyContent={"center"}
+      margin={"20px 0px"}
+    >
+      {data == 0 ? (
+        ""
+      ) : (
+        <Box width={190}>
+          <Pagination
+            onChange={(event, page) => {
+              setPage(page);
+            }}
+            count={3}
+            color="primary"
+            hideNextButton={data?.length < 6 ? true : false}
+          />
+        </Box>
+      )}
     </Box>
   );
 }
