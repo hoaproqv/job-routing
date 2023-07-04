@@ -108,7 +108,7 @@ function Login() {
             <Button
               type="button"
               className="cancelbtn"
-              onClick={() => navigate()}
+              onClick={() => navigate("/")}
               style={cancelButton}
             >
               Cancel
